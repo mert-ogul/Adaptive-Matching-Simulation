@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "random-algorithm-sim"
+version = "0.1.0"
+description = "Discrete-event simulation of the Asymmetric(a, δ) expert system with Random and Backpressure(ε) matching algorithms."
+requires-python = ">=3.11"
+authors = [
+  { name = "Group 39" },
+]
+readme = "README.md"
+license = { text = "MIT" }
+dependencies = [
+  "numpy>=1.26,<2.0",
+  "scipy>=1.13,<2.0",
+  "pandas>=2.2,<3.0",
+  "matplotlib>=3.8,<4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0,<9.0",
+  "mypy>=1.8,<2.0",
+  "ruff>=0.6,<0.7",
+  "black>=24.3,<25.0",
+]
+
+[project.urls]
+Homepage = "https://example.com/random-algorithm-sim"
+
+[project.scripts]
+expert-sim = "expert_sim.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = []
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+warn_unused_ignores = true
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+exclude = ["tests/"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
